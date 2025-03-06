@@ -1,6 +1,7 @@
 import { ChevronDown } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { User, Album } from "@/schemas";
+import { Link } from "@tanstack/react-router";
 
 interface UserAccordionProps {
   user: User
@@ -23,7 +24,7 @@ export default function UserAccordion({ user, albums, isOpen, onToggle }: UserAc
           <div className="px-4 py-2 space-y-2">
             {albums?.map((album) => (
               <div key={album.id} className="pl-6 py-2 border-l-2 border-muted-foreground/20 ml-4">
-                <span className="text-sm">{album.title}</span>
+                <Link to={`/photos/${album.id.toString()}`}><span className="text-sm">{album.title}</span></Link>
               </div>
             ))}
           </div>

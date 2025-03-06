@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from "react";
 import { useUsers, useAlbums, useErrorNotification } from "@/hooks";
-import UserAccordion from '@/components/userAccordion';
+import UserAccordion from '@/components/UserAccordion';
 import Spinner from '@/components/Spinner';
 
 const UsersComponent = () => {
