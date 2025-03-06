@@ -12,9 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as UsersIndexImport } from './routes/users/index'
 import { Route as AlbumsIndexImport } from './routes/albums/index'
-import { Route as UsersUserAccordionImport } from './routes/users/userAccordion'
 
 // Create/Update Routes
 
@@ -24,21 +22,9 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const UsersIndexRoute = UsersIndexImport.update({
-  id: '/users/',
-  path: '/users/',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const AlbumsIndexRoute = AlbumsIndexImport.update({
   id: '/albums/',
   path: '/albums/',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const UsersUserAccordionRoute = UsersUserAccordionImport.update({
-  id: '/users/userAccordion',
-  path: '/users/userAccordion',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,25 +39,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/users/userAccordion': {
-      id: '/users/userAccordion'
-      path: '/users/userAccordion'
-      fullPath: '/users/userAccordion'
-      preLoaderRoute: typeof UsersUserAccordionImport
-      parentRoute: typeof rootRoute
-    }
     '/albums/': {
       id: '/albums/'
       path: '/albums'
       fullPath: '/albums'
       preLoaderRoute: typeof AlbumsIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/users/': {
-      id: '/users/'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof UsersIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -81,47 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/users/userAccordion': typeof UsersUserAccordionRoute
   '/albums': typeof AlbumsIndexRoute
-  '/users': typeof UsersIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/users/userAccordion': typeof UsersUserAccordionRoute
   '/albums': typeof AlbumsIndexRoute
-  '/users': typeof UsersIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/users/userAccordion': typeof UsersUserAccordionRoute
   '/albums/': typeof AlbumsIndexRoute
-  '/users/': typeof UsersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/users/userAccordion' | '/albums' | '/users'
+  fullPaths: '/' | '/albums'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/users/userAccordion' | '/albums' | '/users'
-  id: '__root__' | '/' | '/users/userAccordion' | '/albums/' | '/users/'
+  to: '/' | '/albums'
+  id: '__root__' | '/' | '/albums/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  UsersUserAccordionRoute: typeof UsersUserAccordionRoute
   AlbumsIndexRoute: typeof AlbumsIndexRoute
-  UsersIndexRoute: typeof UsersIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  UsersUserAccordionRoute: UsersUserAccordionRoute,
   AlbumsIndexRoute: AlbumsIndexRoute,
-  UsersIndexRoute: UsersIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,22 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/users/userAccordion",
-        "/albums/",
-        "/users/"
+        "/albums/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/users/userAccordion": {
-      "filePath": "users/userAccordion.tsx"
-    },
     "/albums/": {
       "filePath": "albums/index.tsx"
-    },
-    "/users/": {
-      "filePath": "users/index.tsx"
     }
   }
 }
