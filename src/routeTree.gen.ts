@@ -12,7 +12,8 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
-import { Route as AlbumsIndexImport } from './routes/albums/index'
+import { Route as PhotosIndexImport } from './routes/photos/index'
+import { Route as PhotosAlbumIdImport } from './routes/photos/$albumId'
 
 // Create/Update Routes
 
@@ -22,9 +23,15 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AlbumsIndexRoute = AlbumsIndexImport.update({
-  id: '/albums/',
-  path: '/albums/',
+const PhotosIndexRoute = PhotosIndexImport.update({
+  id: '/photos/',
+  path: '/photos/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PhotosAlbumIdRoute = PhotosAlbumIdImport.update({
+  id: '/photos/$albumId',
+  path: '/photos/$albumId',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +46,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/albums/': {
-      id: '/albums/'
-      path: '/albums'
-      fullPath: '/albums'
-      preLoaderRoute: typeof AlbumsIndexImport
+    '/photos/$albumId': {
+      id: '/photos/$albumId'
+      path: '/photos/$albumId'
+      fullPath: '/photos/$albumId'
+      preLoaderRoute: typeof PhotosAlbumIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/photos/': {
+      id: '/photos/'
+      path: '/photos'
+      fullPath: '/photos'
+      preLoaderRoute: typeof PhotosIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +67,42 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/albums': typeof AlbumsIndexRoute
+  '/photos/$albumId': typeof PhotosAlbumIdRoute
+  '/photos': typeof PhotosIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/albums': typeof AlbumsIndexRoute
+  '/photos/$albumId': typeof PhotosAlbumIdRoute
+  '/photos': typeof PhotosIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/albums/': typeof AlbumsIndexRoute
+  '/photos/$albumId': typeof PhotosAlbumIdRoute
+  '/photos/': typeof PhotosIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/albums'
+  fullPaths: '/' | '/photos/$albumId' | '/photos'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/albums'
-  id: '__root__' | '/' | '/albums/'
+  to: '/' | '/photos/$albumId' | '/photos'
+  id: '__root__' | '/' | '/photos/$albumId' | '/photos/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AlbumsIndexRoute: typeof AlbumsIndexRoute
+  PhotosAlbumIdRoute: typeof PhotosAlbumIdRoute
+  PhotosIndexRoute: typeof PhotosIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AlbumsIndexRoute: AlbumsIndexRoute,
+  PhotosAlbumIdRoute: PhotosAlbumIdRoute,
+  PhotosIndexRoute: PhotosIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/albums/"
+        "/photos/$albumId",
+        "/photos/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/albums/": {
-      "filePath": "albums/index.tsx"
+    "/photos/$albumId": {
+      "filePath": "photos/$albumId.tsx"
+    },
+    "/photos/": {
+      "filePath": "photos/index.tsx"
     }
   }
 }
