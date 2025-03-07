@@ -2,6 +2,8 @@
 
 @plugin "tailwindcss-animate";
 
+@config "../tailwind.config.js";
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -122,3 +124,4 @@
     @apply bg-background text-foreground;
   }
 }
+
