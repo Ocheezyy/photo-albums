@@ -7,7 +7,7 @@ type ImageGridProps = {
 
 const ImageGrid = ({ photos }: ImageGridProps) => {
     return (
-        <div className="max-w-[420px] mx-auto pt-2">
+        <div className="max-w-5xl mx-auto pt-2">
             <div className="grid grid-cols-3 gap-1">
                 {photos?.map((image) => (
                 <div key={image.id} className="relative overflow-hidden rounded-sm object-cover">

@@ -9,7 +9,7 @@ const RootComponent = () => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="flex flex-col h-full max-w-md mx-auto bg-gradient-to-b from-background to-background/80">
+            <div className="flex flex-col h-full max-w-5xl mx-auto bg-gradient-to-b from-background to-background/80">
                 <Header />
                 <Outlet />
                 <Toaster />
