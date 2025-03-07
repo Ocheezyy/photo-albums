@@ -1,4 +1,4 @@
-import { BadgeX, Image, Video, Music } from "lucide-react"
+import { Trash2, Image, Video, Music } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { User, Album } from "@/schemas";
@@ -89,7 +89,7 @@ export default function UserAccordion({ user, albums, isOpen, onToggle, onIgnore
                         ${isHovered ? "opacity-100" : "opacity-70"}
                       `}
                     >
-                      <BadgeX className="h-4 w-4" />
+                      <Trash2 className="h-4 w-4" />
                     </button>
                   </div>
                   </Link>
