@@ -70,17 +70,16 @@ export default function UserAccordion({ user, albums, isOpen, onToggle, onIgnore
                   onMouseEnter={() => setHoveredAlbum(album.id)}
                   onMouseLeave={() => setHoveredAlbum(null)}
                 >
-                  <Link to={`/photos/${album.id.toString()}`}>
-                   <div
+                  <div
                     className={`absolute inset-0 bg-gradient-to-r ${colorClass} opacity-${isHovered ? "90" : "80"}`}
                   />
                   <div className="relative px-4 py-3 flex items-center justify-between">
-                    <div className="flex items-center">
+                    <Link to={`/photos/${album.id.toString()}`} className="flex items-center min-w-0">
                       <div className="flex items-center justify-center h-8 w-8 rounded-full bg-white/20 backdrop-blur-sm">
                         <AlbumIcon className="h-4 w-4 text-white" />
                       </div>
-                      <span className="ml-3 text-white font-medium">{album.title}</span>
-                    </div>
+                      <span className="ml-3 text-white font-medium whitespace-nowrap">{album.title}</span>
+                    </Link>
                     <button
                       onClick={() => onIgnoreAlbum(album.id)}
                       className={`
@@ -92,7 +91,7 @@ export default function UserAccordion({ user, albums, isOpen, onToggle, onIgnore
                       <Trash2 className="h-4 w-4" />
                     </button>
                   </div>
-                  </Link>
+                  
                 </div>
               )
             })}
